@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Jalsah Itsnain</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="fcm_token">FCM Token: %s</string>
+
+    <string name="channel_id">channel1</string>
+    <string name="base_url">https://jalsahitsnainkng.000webhostapp.com/wordpress/</string>
+
+    <string name="namadaerah">Nama Daerah</string>
+    <string name="jadwal_sholat">Jadwal Sholat</string>
+    <string name="isya">Isya</string>
+    <string name="magrib">Maghrib</string>
+    <string name="dzuhur">Dzuhur</string>
+    <string name="arah_kabah">Kiblat</string>
+    <string name="baca_alquran">Al-Quran</string>
+    <string name="listayat">List Ayat</string>
+    <string name="listsurah">List Surah</string>
+
+
+    <string name="judul1">AKHLAK KEPADA ALLAH SWT || ALHABIB QURAISY BAHARUN</string>
+    <string name="judul2">HADIRKAN ALLAH SWT DI DALAM SHOLAT MU || ALHABIB QURAISY BAHARUN ᴴᴰ</string>
+    <string name="judul3">Adab Dalam Berdoa Kepada Allah SWT.</string>
+
+    <string name="player_error">Error initializing YouTube player: %s</string>
+
+    <string name="coming_soon">Fitur segera hadir</string>
+    <string name="tele">\@akbarnash</string>
+    <string name="fb">/makbarnas</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+</resources>

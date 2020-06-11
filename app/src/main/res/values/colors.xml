@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFC107</color>
+    <color name="colorPrimaryDark">#FFC107</color>
+    <color name="colorAccent">#E91E63</color>
+
+    <color name="common_gray_txt">#514e4e</color>
+    <color name="common_black_50">#80000000</color>
+
+    <color name="list_row_start_color">#ffffff</color>
+    <color name="list_row_end_color">#ffffff</color>
+    <color name="list_row_hover_start_color">#ebeef0</color>
+    <color name="list_row_hover_end_color">#ebeef0</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="blue">#3F51B5</color>
+
+    <color name="bluelight">#2196F3</color>
+</resources>

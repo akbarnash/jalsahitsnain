@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" /><!-- background color for imagebutton-->
+    <corners android:radius="10dp" />
+    <stroke android:color="@color/colorPrimary" android:width="2dp"/> <!-- round corners for imagebutton-->
+</shape>

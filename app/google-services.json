@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "110513501977",
+    "firebase_url": "https://jalsah-itsnain.firebaseio.com",
+    "project_id": "jalsah-itsnain",
+    "storage_bucket": "jalsah-itsnain.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110513501977:android:85bb389f605bfbc9c07788",
+        "android_client_info": {
+          "package_name": "app.com.jalsahitsnain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "110513501977-2gerdofrrtp1rb6racqn5q4f9q3e6j9l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.com.jalsahitsnain",
+            "certificate_hash": "bb5adb3f793d046e62ad4632fea5ec536769857e"
+          }
+        },
+        {
+          "client_id": "110513501977-3ap50rgjjgb3quuacaifopb8l9q4cgp3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbOvHgo17oTQ8aUMtPDwuReQyI59xPTdg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "110513501977-3ap50rgjjgb3quuacaifopb8l9q4cgp3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
