@@ -11,3 +11,11 @@ Fitur :
 - Al-Quran dengan SQLite dan penunjuk arah kiblat
 
 Aplikasi ini adalah aplikasi yang dibuat untuk tugas akhir kuliah saya, semoga kedepannya bisa dikembangkan menjadi lebih baik lagi
+
+# screenshot
+
+![image](https://github.com/akbarnash/jalsahitsnain/blob/master/Screenshot_20200618-024010.jpg)
+![image](https://github.com/akbarnash/jalsahitsnain/blob/master/Screenshot_20200618-024014.jpg)
+![image](https://github.com/akbarnash/jalsahitsnain/blob/master/Screenshot_20200618-024027.jpg)
+![image](https://github.com/akbarnash/jalsahitsnain/blob/master/Screenshot_20200618-024033.jpg)
+
