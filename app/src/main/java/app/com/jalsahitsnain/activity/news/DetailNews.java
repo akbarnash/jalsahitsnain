@@ -1,12 +1,12 @@
 package app.com.jalsahitsnain.activity.news;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
@@ -27,7 +27,7 @@ public class DetailNews extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_detail_news);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Detail Berita");
 
@@ -67,5 +67,13 @@ public class DetailNews extends AppCompatActivity {
         } catch (ParseException e) {
         }
         return "";
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

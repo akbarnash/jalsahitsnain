@@ -1,14 +1,11 @@
 package app.com.jalsahitsnain.activity.news;
 
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -35,8 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.com.jalsahitsnain.R;
-import app.com.jalsahitsnain.activity.DetailLiveAudio;
-import app.com.jalsahitsnain.fragments.VideoFragment;
+import app.com.jalsahitsnain.util.Server;
 
 
 /**
@@ -64,9 +60,9 @@ public class NewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_news, container, false);
 
-        URL_DATA = "https://jalsahitsnainkng.000webhostapp.com/wordpress/wp-json/wp/v2/posts/";
+        URL_DATA = Server.REST_API;
 
         swipeRefreshLayout = rootView.findViewById(R.id.swNews);
 

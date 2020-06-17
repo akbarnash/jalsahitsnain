@@ -118,18 +118,18 @@ public class AudiosFragment extends Fragment {
                     arrayListSongsUrl.add(songObj.getSongLink());
                     jcAudios.add(JcAudio.createFromURL(songObj.getSongTitle(), songObj.getSongLink()));
                 }
-                arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,arrayListSongsName){
+                arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.song_item,arrayListSongsName){
 
                     @NonNull
                     @Override
                     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
                         View view = super.getView(position, convertView, parent);
-                        TextView textView = (TextView)view.findViewById(android.R.id.text1);
-                        Drawable img = getContext().getResources().getDrawable(R.drawable.music);
+                        TextView textView = (TextView)view.findViewById(R.id.songtitle);
+                        //Drawable img = getContext().getResources().getDrawable(R.drawable.music);
 
                         textView.setSingleLine(true);
-                        textView.setCompoundDrawables(img, null, null, null);
+                        //textView.setCompoundDrawables(img, null, null, null);
                         textView.setMaxLines(1);
 
                         return super.getView(position, convertView, parent);

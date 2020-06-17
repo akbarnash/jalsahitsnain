@@ -64,7 +64,7 @@ public class ArahKiblatActivity extends AppCompatActivity implements SensorEvent
         // get the angle around the z-axis rotated
         float degree = Math.round(event.values[0]);
 
-        tvHeading.setText("Heading: " + degree + " degrees");
+        tvHeading.setText("Menghadap: " + degree + " derajat");
 
         // create a rotation animation (reverse turn degree degrees)
         RotateAnimation ra = new RotateAnimation(

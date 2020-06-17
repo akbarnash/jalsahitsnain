@@ -11,7 +11,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerInParent="true"
-        app:srcCompat="@drawable/mosque"
+        app:srcCompat="@drawable/ic_islam"
         tools:ignore="VectorDrawableCompat"
         android:id="@+id/logo_splash"/>
     <LinearLayout

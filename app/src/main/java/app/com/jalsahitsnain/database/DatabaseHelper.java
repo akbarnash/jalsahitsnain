@@ -28,7 +28,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DatabaseContract.TableSurah.CREATE_TABLE);
         db.execSQL(DatabaseContract.TableAyat.CREATE_TABLE);
-        db.execSQL(DatabaseContract.TableNote.CREATE_TABLE);
         Log.d("Create","DB");
     }
 

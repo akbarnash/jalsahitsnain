@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.DetailsActivity"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:orientation="vertical">
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/youtube_player"
         android:layout_width="match_parent"
@@ -46,16 +47,27 @@
             android:visibility="gone"/>
     </LinearLayout>
     <!--real image size is 40x50px-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <Button
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:id="@+id/show_desc"
         android:layout_below="@+id/title_layout"
-        android:text="LIHAT DESKRIPSI"
+        android:text="DESKRIPSI"
         android:textAlignment="textStart"
         android:paddingLeft="15dp"
         android:background="@drawable/custom_image_btn"
         android:layout_margin="4dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
     <TextView
         android:id="@+id/textViewDes"
         android:layout_width="wrap_content"
@@ -67,18 +79,21 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/common_gray_txt"
         android:textSize="16dp"
-        android:scrollbars="vertical"
-        android:visibility="visible" />
+        android:scrollbars="vertical" />
     <Button
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:id="@+id/show_rec"
         android:layout_below="@+id/textViewDes"
-        android:text="LIHAT REKOMENDASI"
+        android:text="REKOMENDASI"
         android:textAlignment="textStart"
         android:background="@drawable/custom_image_btn"
         android:paddingLeft="15dp"
         android:layout_margin="4dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,5 +109,8 @@
         layout="@layout/content_rekomen"
         android:layout_below="@+id/vid_id"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"/>
-</RelativeLayout>
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"/>
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

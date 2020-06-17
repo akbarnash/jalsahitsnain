@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     private TabLayout tabLayout = null;
     private ViewPager viewPager = null;
     private static final String TAG = "MainActivity";
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<PagerAdapter> adapter;
     private CoordinatorLayout coordinatorLayout;
     private final String TOPIC = "post";
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         tabLayout.getTabAt(3).getIcon().setColorFilter(Color.parseColor("#a8a8a8"), PorterDuff.Mode.SRC_IN);
 
         /*setup the view pager*/
-        final PagerAdapter adapter = new app.com.jalsahitsnain.adapters.PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

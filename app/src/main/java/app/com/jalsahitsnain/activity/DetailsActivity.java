@@ -2,15 +2,11 @@ package app.com.jalsahitsnain.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -19,19 +15,19 @@ import com.google.android.youtube.player.YouTubePlayerView;
 
 import app.com.jalsahitsnain.R;
 import app.com.jalsahitsnain.models.YoutubeDataModel;
+import app.com.jalsahitsnain.util.Server;
 
 public class DetailsActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
-    private static String GOOGLE_YOUTUBE_API = "AIzaSyDzgdvUwCUmLV4fOUfrkRkVFbto1ur6_Us";
+    private static String YOUTUBE_API = Server.API_KEY;
+
     private YoutubeDataModel youtubeDataModel = null;
     TextView textViewName,textViewDes,textViewDate,vid_id;
-    TextView textViewTitle1,textViewTitle2,textViewTitle3,txtrec1,txtrec2,txtrec3;
-    ImageView imageThumb1,imageThumb2,imageThumb3;
-    LinearLayout lt1,lt2,lt3,content;
-    Button desc, rec;
+    TextView tvTitle1, tvTitle2, tvTitle3,tvTitle4,txtrec1,txtrec2,txtrec3,txtrec4;
+    ImageView imgThumb1, imgThumb2, imgThumb3,imgThumb4;
+    LinearLayout lt1,lt2,lt3,lt4,content;
     private YouTubePlayerView mYoutubePlayerView = null;
     private YouTubePlayer mYoutubePlayer = null;
-    RecyclerView mList_videos = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,34 +37,34 @@ public class DetailsActivity extends YouTubeBaseActivity implements YouTubePlaye
         Log.e("", youtubeDataModel.getDescription());
 
         mYoutubePlayerView = findViewById(R.id.youtube_player);
-        mYoutubePlayerView.initialize(GOOGLE_YOUTUBE_API, this);
+        mYoutubePlayerView.initialize(YOUTUBE_API, this);
 
-        mList_videos = findViewById(R.id.mList_videos);
-
+        //layout video
         textViewName = findViewById(R.id.textViewName);
         textViewDes = findViewById(R.id.textViewDes);
-        textViewDes.setMovementMethod(new ScrollingMovementMethod());
         textViewDate = findViewById(R.id.textViewDate);
         vid_id = findViewById(R.id.vid_id);
-        mList_videos = findViewById(R.id.mList_videos);
 
+        //layout rekomen
         lt1 = findViewById(R.id.t1);
         lt2 = findViewById(R.id.t2);
         lt3 = findViewById(R.id.t3);
+        lt4 = findViewById(R.id.t4);
         content = findViewById(R.id.contentrec);
 
-        imageThumb1 = findViewById(R.id.ImageThumb1);
-        textViewTitle1 = findViewById(R.id.textViewTitle1);
+        //item rekomen
+        imgThumb1 = findViewById(R.id.ImageThumb1);
+        tvTitle1 = findViewById(R.id.textViewTitle1);
         txtrec1 = findViewById(R.id.txtrec1);
-        imageThumb2 = findViewById(R.id.ImageThumb2);
-        textViewTitle2 = findViewById(R.id.textViewTitle2);
+        imgThumb2 = findViewById(R.id.ImageThumb2);
+        tvTitle2 = findViewById(R.id.textViewTitle2);
         txtrec2 = findViewById(R.id.txtrec2);
-        imageThumb3 = findViewById(R.id.ImageThumb3);
-        textViewTitle3 = findViewById(R.id.textViewTitle3);
+        imgThumb3 = findViewById(R.id.ImageThumb3);
+        tvTitle3 = findViewById(R.id.textViewTitle3);
         txtrec3 = findViewById(R.id.txtrec3);
-
-        desc = findViewById(R.id.show_desc);
-        rec = findViewById(R.id.show_rec);
+        imgThumb4 = findViewById(R.id.ImageThumb4);
+        tvTitle4 = findViewById(R.id.textViewTitle4);
+        txtrec4 = findViewById(R.id.txtrec4);
 
         textViewName.setText(youtubeDataModel.getTitle());
         textViewDes.setText(youtubeDataModel.getDescription());
@@ -77,25 +73,6 @@ public class DetailsActivity extends YouTubeBaseActivity implements YouTubePlaye
 
         vid_id.setVisibility(View.INVISIBLE);
 
-        desc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textViewDes.setVisibility(View.VISIBLE);
-                content.setVisibility(View.GONE);
-                vid_id.setVisibility(View.GONE);
-            }
-        });
-
-        rec.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                content.setVisibility(View.VISIBLE);
-                if (vid_id.getText().equals("BELUM ADA REKOMENDASI")){
-                    vid_id.setVisibility(View.VISIBLE);
-                }
-                textViewDes.setVisibility(View.GONE);
-            }
-        });
         rekomen();
     }
 
@@ -150,108 +127,174 @@ public class DetailsActivity extends YouTubeBaseActivity implements YouTubePlaye
     }
 
     public void rekomen(){
+        //rule 1 => 2,3,4,5
         if (vid_id.getText().equals("Ukc9DDqR2kU")) {
             vid_id.setVisibility(View.GONE);
-            imageThumb1.setImageResource(R.drawable.thumb2);
-            textViewTitle1.setText(R.string.judul1);
+
+            //id 2
+            imgThumb1.setImageResource(R.drawable.thumb2);
+            tvTitle1.setText(R.string.judul2);
             lt1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(DetailsActivity.this, DetailsActivity2.class);
-                    i.putExtra("title", getString(R.string.judul1));
+                    i.putExtra("title", getString(R.string.judul2));
                     i.putExtra("link", "0HJ6bAFirPw");
                     startActivity(i);
                     DetailsActivity.this.finish();
                 }
             });
 
-            imageThumb2.setImageResource(R.drawable.thumb5);
-            textViewTitle2.setText(R.string.judul2);
+            //id 3
+            imgThumb2.setImageResource(R.drawable.thumb3);
+            tvTitle2.setText(R.string.judul3);
             lt2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(DetailsActivity.this, DetailsActivity2.class);
-                    i.putExtra("title", getString(R.string.judul2));
-                    i.putExtra("link", "0PEAR2QSb54");
+                    i.putExtra("title", getString(R.string.judul3));
+                    i.putExtra("link", "DKwPDv50Hsw");
                     startActivity(i);
                     DetailsActivity.this.finish();
                 }
             });
 
-            imageThumb3.setVisibility(View.GONE);
-            textViewTitle3.setVisibility(View.GONE);
-            txtrec3.setVisibility(View.GONE);
+            //id 4
+            imgThumb3.setImageResource(R.drawable.thumb4);
+            tvTitle3.setText(R.string.judul4);
+            lt3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(DetailsActivity.this, DetailsActivity2.class);
+                    i.putExtra("title", getString(R.string.judul4));
+                    i.putExtra("link", "wzpP0KDXc-E");
+                    startActivity(i);
+                    DetailsActivity.this.finish();
+                }
+            });
+
+            //id 5
+            imgThumb4.setImageResource(R.drawable.thumb5);
+            tvTitle4.setText(R.string.judul5);
+            lt4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(DetailsActivity.this, DetailsActivity2.class);
+                    i.putExtra("title", getString(R.string.judul5));
+                    i.putExtra("link", "0PEAR2QSb54");
+                    startActivity(i);
+                    DetailsActivity.this.finish();
+                }
+            });
 
         }
-        else if (vid_id.getText().equals("wzpP0KDXc-E")) {
+
+        //rule 2,3,5 => 1,4
+        else if (vid_id.getText().equals("0HJ6bAFirPw")||vid_id.getText().equals("DKwPDv50Hsw")||vid_id.getText().equals("0PEAR2QSb54")) {
             vid_id.setVisibility(View.GONE);
-            imageThumb1.setImageResource(R.drawable.thumb2);
-            textViewTitle1.setText(R.string.judul1);
+
+            //id 1
+            imgThumb1.setImageResource(R.drawable.thumb1);
+            tvTitle1.setText(R.string.judul1);
             lt1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(DetailsActivity.this, DetailsActivity2.class);
                     i.putExtra("title", getString(R.string.judul1));
+                    i.putExtra("link", "Ukc9DDqR2kU");
+                    startActivity(i);
+                    DetailsActivity.this.finish();
+                }
+            });
+
+            //id 2
+            imgThumb2.setImageResource(R.drawable.thumb2);
+            tvTitle2.setText(R.string.judul2);
+            lt2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(DetailsActivity.this, DetailsActivity2.class);
+                    i.putExtra("title", getString(R.string.judul2));
                     i.putExtra("link", "0HJ6bAFirPw");
                     startActivity(i);
                     DetailsActivity.this.finish();
                 }
             });
 
-            imageThumb2.setImageResource(R.drawable.thumb5);
-            textViewTitle2.setText(R.string.judul2);
-            lt2.setOnClickListener(new View.OnClickListener() {
+            lt3.setVisibility(View.GONE);
+            lt4.setVisibility(View.GONE);
+
+        }
+
+        //rule 4 => 1,2,3,5
+        else if (vid_id.getText().equals("wzpP0KDXc-E")){
+            vid_id.setVisibility(View.GONE);
+
+            //id 1
+            imgThumb1.setImageResource(R.drawable.thumb1);
+            tvTitle1.setText(R.string.judul1);
+            lt1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(DetailsActivity.this, DetailsActivity2.class);
-                    i.putExtra("title", getString(R.string.judul2));
-                    i.putExtra("link", "0PEAR2QSb54");
+                    i.putExtra("title", getString(R.string.judul1));
+                    i.putExtra("link", "Ukc9DDqR2kU");
                     startActivity(i);
                     DetailsActivity.this.finish();
                 }
             });
 
-            imageThumb3.setImageResource(R.drawable.thumb1);
-            textViewTitle3.setText(R.string.judul3);
+            //id 2
+            imgThumb2.setImageResource(R.drawable.thumb2);
+            tvTitle2.setText(R.string.judul2);
+            lt2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(DetailsActivity.this, DetailsActivity2.class);
+                    i.putExtra("title", getString(R.string.judul2));
+                    i.putExtra("link", "0HJ6bAFirPw");
+                    startActivity(i);
+                    DetailsActivity.this.finish();
+                }
+            });
+
+            //id 3
+            imgThumb3.setImageResource(R.drawable.thumb3);
+            tvTitle3.setText(R.string.judul3);
             lt3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(DetailsActivity.this, DetailsActivity2.class);
                     i.putExtra("title", getString(R.string.judul3));
-                    i.putExtra("link", "Ukc9DDqR2kU");
+                    i.putExtra("link", "DKwPDv50Hsw");
                     startActivity(i);
                     DetailsActivity.this.finish();
                 }
             });
 
-        }
-        else if (vid_id.getText().equals("DKwPDv50Hsw")||vid_id.getText().equals("0PEAR2QSb54")||vid_id.getText().equals("kzn815plYxU")){
-            vid_id.setVisibility(View.GONE);
-            imageThumb1.setImageResource(R.drawable.thumb2);
-            textViewTitle1.setText(R.string.judul3);
-            lt1.setOnClickListener(new View.OnClickListener() {
+            //id 5
+            imgThumb4.setImageResource(R.drawable.thumb5);
+            tvTitle4.setText(R.string.judul5);
+            lt4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(DetailsActivity.this, DetailsActivity2.class);
-                    i.putExtra("title", getString(R.string.judul3));
-                    i.putExtra("link", "Ukc9DDqR2kU");
+                    i.putExtra("title", getString(R.string.judul5));
+                    i.putExtra("link", "0PEAR2QSb54");
                     startActivity(i);
                     DetailsActivity.this.finish();
                 }
             });
 
-            imageThumb2.setVisibility(View.GONE);
-            textViewTitle2.setVisibility(View.GONE);
-            txtrec2.setVisibility(View.GONE);
-            imageThumb3.setVisibility(View.GONE);
-            textViewTitle3.setVisibility(View.GONE);
-            txtrec3.setVisibility(View.GONE);
         }
+
         else{
+            vid_id.setVisibility(View.VISIBLE);
             vid_id.setText("BELUM ADA REKOMENDASI");
             lt1.setVisibility(View.GONE);
             lt2.setVisibility(View.GONE);
             lt3.setVisibility(View.GONE);
+            lt4.setVisibility(View.GONE);
         }
     }
 

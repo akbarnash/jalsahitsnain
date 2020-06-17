@@ -1,65 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.wpnews.PostDetails">
-
+    tools:context=".activity.news.DetailNews"
+    android:background="@color/white">
     <LinearLayout
+        android:weightSum="2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-<!--
-        <View
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+        <LinearLayout
+            android:layout_weight=".6"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorPrimary"/>-->
-
-        <TextView
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:id="@+id/post_det_title"
+            android:layout_height="0dp"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@color/colorPrimaryDark"
+                android:id="@+id/imageWebPage" />
+        </LinearLayout>
+        <ScrollView
+            android:layout_weight="1.4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:layout_gravity="start"
-            android:textSize="16pt"
-            android:textStyle="bold"/>
-            <!--android:textAppearance="@style/TextAppearance.AppCompat.Title"-->
-
-<!--
-        <View
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorPrimary"/>-->
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/post_det_date"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:drawableLeft="@drawable/ic_date"/>
-
-        <org.sufficientlysecure.htmltextview.HtmlTextView
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:id="@+id/post_det_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
-
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Title"
+                            android:paddingLeft="10dp"
+                            android:textSize="35sp"
+                            android:textColor="#000000"
+                            android:id="@+id/mainTitle"
+                            android:layout_marginRight="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/mainDate"
+                            android:drawableLeft="@drawable/ic_date"
+                            android:layout_below="@id/mainTitle"
+                            android:paddingLeft="10dp"/>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:id="@+id/mainImage"
+                            android:src="@color/colorPrimary"
+                            android:layout_below="@id/mainDate"/>
+                        <org.sufficientlysecure.htmltextview.HtmlTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/mainImage"
+                            android:text="Title"
+                            android:paddingLeft="10dp"
+                            android:textSize="15sp"
+                            android:id="@+id/mainDisc"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="15dp"/>
+                    </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
     </LinearLayout>
-
-</ScrollView>
+</RelativeLayout>

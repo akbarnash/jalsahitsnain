@@ -7,6 +7,7 @@
 
     <string name="channel_id">channel1</string>
     <string name="base_url">https://jalsahitsnainkng.000webhostapp.com/wordpress/</string>
+    <string name="youtube_api">AIzaSyDzgdvUwCUmLV4fOUfrkRkVFbto1ur6_Us</string>
 
     <string name="namadaerah">Nama Daerah</string>
     <string name="jadwal_sholat">Jadwal Sholat</string>
@@ -18,10 +19,11 @@
     <string name="listayat">List Ayat</string>
     <string name="listsurah">List Surah</string>
 
-
-    <string name="judul1">AKHLAK KEPADA ALLAH SWT || ALHABIB QURAISY BAHARUN</string>
-    <string name="judul2">HADIRKAN ALLAH SWT DI DALAM SHOLAT MU || ALHABIB QURAISY BAHARUN ᴴᴰ</string>
-    <string name="judul3">Adab Dalam Berdoa Kepada Allah SWT.</string>
+    <string name="judul1">Adab Dalam Berdoa Kepada Allah SWT</string>
+    <string name="judul2">AKHLAK KEPADA ALLAH SWT || ALHABIB QURAISY BAHARUN</string>
+    <string name="judul3">Adab Bersalaman Sesuai Sunnah Rasul SAW</string>
+    <string name="judul4">Sering Merasa Malas Dalam Beribadah?? HATI-HATI... || Alhabib Quraisy Baharun</string>
+    <string name="judul5">HADIRKAN ALLAH SWT DI DALAM SHOLAT MU || ALHABIB QURAISY BAHARUN</string>
 
     <string name="player_error">Error initializing YouTube player: %s</string>
 

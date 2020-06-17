@@ -33,15 +33,15 @@ import app.com.jalsahitsnain.R;
 import app.com.jalsahitsnain.adapters.VideoPostAdapter2;
 import app.com.jalsahitsnain.interfaces.OnItemClickListener;
 import app.com.jalsahitsnain.models.YoutubeDataModel;
+import app.com.jalsahitsnain.util.Server;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class DetailsActivity2 extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
-    private static String GOOGLE_YOUTUBE_API_KEY = "AIzaSyDzgdvUwCUmLV4fOUfrkRkVFbto1ur6_Us";//here you should use your api key for testing purpose you can use this api also
-    private static String PLAYLIST_ID = "PL9jIWytrbwrxxbfzUJLCHI4v4sWP2JJOj";//here you should use your playlist id for testing purpose you can use this api also
-    private static String CHANNLE_GET_URL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" + PLAYLIST_ID + "&maxResults=20&key=" + GOOGLE_YOUTUBE_API_KEY + "";
+    private static String YOUTUBE_API = Server.API_KEY;
+    private static String CHANNEL_GET_URL = Server.API_URL;
 
     private RecyclerView mList_videos = null;
     private VideoPostAdapter2 adapter = null;
@@ -51,7 +51,6 @@ public class DetailsActivity2 extends YouTubeBaseActivity implements YouTubePlay
     private YouTubePlayerView youTubeView;
 
     String link = null;
-
     TextView textViewName;
 
     @Override
@@ -60,7 +59,7 @@ public class DetailsActivity2 extends YouTubeBaseActivity implements YouTubePlay
         setContentView(R.layout.activity_details2);
 
         youTubeView = findViewById(R.id.youtube_view);
-        youTubeView.initialize(GOOGLE_YOUTUBE_API_KEY, this);
+        youTubeView.initialize(YOUTUBE_API, this);
 
         Intent intent = getIntent();
 
@@ -102,7 +101,7 @@ public class DetailsActivity2 extends YouTubeBaseActivity implements YouTubePlay
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RECOVERY_REQUEST) {
             // Retry initialization if user performed a recovery action
-            getYouTubePlayerProvider().initialize(GOOGLE_YOUTUBE_API_KEY, this);
+            getYouTubePlayerProvider().initialize(YOUTUBE_API, this);
         }
     }
 
@@ -135,8 +134,8 @@ public class DetailsActivity2 extends YouTubeBaseActivity implements YouTubePlay
         @Override
         protected String doInBackground(Void... params) {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(CHANNLE_GET_URL);
-            Log.e("URL", CHANNLE_GET_URL);
+            HttpGet httpGet = new HttpGet(CHANNEL_GET_URL);
+            Log.e("URL", CHANNEL_GET_URL);
             try {
                 HttpResponse response = httpClient.execute(httpGet);
                 HttpEntity httpEntity = response.getEntity();
@@ -177,10 +176,10 @@ public class DetailsActivity2 extends YouTubeBaseActivity implements YouTubePlay
                         if (json.getString("kind").equals("youtube#playlistItem")) {
                             YoutubeDataModel youtubeObject = new YoutubeDataModel();
                             JSONObject jsonSnippet = json.getJSONObject("snippet");
-                            String vedio_id = "";
+                            String video_id = "";
                             if (jsonSnippet.has("resourceId")) {
                                 JSONObject jsonResource = jsonSnippet.getJSONObject("resourceId");
-                                vedio_id = jsonResource.getString("videoId");
+                                video_id = jsonResource.getString("videoId");
                             }
                             String title = jsonSnippet.getString("title");
                             String description = jsonSnippet.getString("description");
@@ -191,7 +190,7 @@ public class DetailsActivity2 extends YouTubeBaseActivity implements YouTubePlay
                             youtubeObject.setDescription(description);
                             youtubeObject.setPublishedAt(publishedAt);
                             youtubeObject.setThumbnail(thumbnail);
-                            youtubeObject.setVideo_id(vedio_id);
+                            youtubeObject.setVideo_id(video_id);
                             mList.add(youtubeObject);
                         }
                     }

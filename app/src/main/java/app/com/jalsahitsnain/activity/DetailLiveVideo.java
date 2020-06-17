@@ -2,41 +2,35 @@ package app.com.jalsahitsnain.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.google.firebase.database.annotations.NotNull;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import app.com.jalsahitsnain.R;
 import app.com.jalsahitsnain.util.Server;
 
 public class DetailLiveVideo  extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
-    private RequestQueue requestQueue;
-    private StringRequest stringRequest;
-    ArrayList<HashMap<String, String>> list_data;
 
     private static final int RECOVERY_REQUEST = 1;
     private YouTubePlayerView youTubeView;
 
-    private static String GOOGLE_YOUTUBE_API = "AIzaSyDzgdvUwCUmLV4fOUfrkRkVFbto1ur6_Us";
-    private String links;
+    private static String YOUTUBE_API = Server.API_KEY;
+    public String links;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,49 +41,48 @@ public class DetailLiveVideo  extends YouTubeBaseActivity implements YouTubePlay
         setContentView(R.layout.activity_live_video);
 
         youTubeView = findViewById(R.id.youtube_view);
-        youTubeView.initialize(GOOGLE_YOUTUBE_API, this);
+        youTubeView.initialize(YOUTUBE_API, this);
 
-        String url = Server.URL+"ytlink.php";
+        jsonParse();
 
-        requestQueue = Volley.newRequestQueue(DetailLiveVideo.this);
+    }
 
-        list_data = new ArrayList<HashMap<String, String>>();
+    private void jsonParse() {
+        AndroidNetworking.get(Server.URL + "ytlink.php")
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    public void onResponse(@NotNull JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("data");
+                            for (int a = 0; a < jsonArray.length(); a ++){
+                                JSONObject json = jsonArray.getJSONObject(a);
+                                links = json.getString("link");
+                            }
+                            //Toast.makeText(getApplicationContext(), links, Toast.LENGTH_LONG).show();
 
-        stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray = jsonObject.getJSONArray("ytstream");
-                    for (int a = 0; a < jsonArray.length(); a ++){
-                        JSONObject json = jsonArray.getJSONObject(a);
-                        HashMap<String, String> map  = new HashMap<String, String>();
-                        map.put("id", json.getString("id"));
-                        map.put("link", json.getString("link"));
-                        list_data.add(map);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                    links = list_data.get(0).get("link");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(DetailLiveVideo.this, error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-
-        requestQueue.add(stringRequest);
-
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(getApplicationContext(), anError.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
-        if (!wasRestored) {
-            player.cueVideo(links);
-            //Toast.makeText(getApplicationContext(), links, Toast.LENGTH_LONG).show();
-        }
+        Toast.makeText(getApplicationContext(), "Sedang memuat streaming....", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override public void run() {
+                if (!wasRestored) {
+                    player.loadVideo(links);
+                }
+            }
+        }, 2000);
+
     }
 
     @Override
@@ -106,7 +99,7 @@ public class DetailLiveVideo  extends YouTubeBaseActivity implements YouTubePlay
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RECOVERY_REQUEST) {
             // Retry initialization if user performed a recovery action
-            getYouTubePlayerProvider().initialize(GOOGLE_YOUTUBE_API, this);
+            getYouTubePlayerProvider().initialize(YOUTUBE_API, this);
         }
     }
 

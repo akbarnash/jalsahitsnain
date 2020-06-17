@@ -44,15 +44,14 @@ import app.com.jalsahitsnain.activity.DetailsActivity;
 import app.com.jalsahitsnain.adapters.VideoPostAdapter;
 import app.com.jalsahitsnain.interfaces.OnItemClickListener;
 import app.com.jalsahitsnain.models.YoutubeDataModel;
+import app.com.jalsahitsnain.util.Server;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class VideoFragment extends Fragment {
 
-    private static String GOOGLE_YOUTUBE_API_KEY = "AIzaSyDzgdvUwCUmLV4fOUfrkRkVFbto1ur6_Us"; //here you should use your api key for testing purpose you can use this api also
-    private static String PLAYLIST_ID = "PL9jIWytrbwrxxbfzUJLCHI4v4sWP2JJOj"; //here you should use your playlist id for testing purpose you can use this api also
-    private static String CHANNLE_GET_URL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" + PLAYLIST_ID + "&maxResults=20&key=" + GOOGLE_YOUTUBE_API_KEY + "";
+    private static String CHANNEL_GET_URL = Server.API_URL;
 
     private RecyclerView mList_videos = null;
     private VideoPostAdapter adapter = null;
@@ -133,8 +132,8 @@ public class VideoFragment extends Fragment {
         @Override
         protected String doInBackground(Void...params) {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(CHANNLE_GET_URL);
-            Log.e("URL", CHANNLE_GET_URL);
+            HttpGet httpGet = new HttpGet(CHANNEL_GET_URL);
+            Log.e("URL", CHANNEL_GET_URL);
             try {
                 HttpResponse response = httpClient.execute(httpGet);
                 HttpEntity httpEntity = response.getEntity();
@@ -243,37 +242,26 @@ public class VideoFragment extends Fragment {
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     Log.i("onQueryTextChange", newText);
-
-                    return true;
-                }
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    Log.i("onQueryTextSubmit", query);
                     //Data akan berubah saat user menginputkan text/kata kunci pada SearchView
-                    query = query.toLowerCase();
+                    newText = newText.toLowerCase();
                     ArrayList < YoutubeDataModel > dataFilter = new ArrayList < > ();
                     for (YoutubeDataModel data: mListData) {
                         String nama = data.getTitle().toLowerCase();
-                        if (nama.contains(query)) {
+                        if (nama.contains(newText)) {
                             dataFilter.add(data);
                         }
                     }
                     if(dataFilter.isEmpty()){
                         Toast.makeText(getContext(),"Data tidak ditemukan", Toast.LENGTH_SHORT).show();
-                        // Handler untuk menjalankan jeda selama 5 detik
-                        new Handler().postDelayed(new Runnable() {
-                            @Override public void run() {
 
-                                // Berhenti berputar/refreshing
-                                swLayout.setRefreshing(false);
-
-                                // fungsi-fungsi lain yang dijalankan saat refresh berhenti
-                                initList(mListData);
-                                new RequestYoutubeAPI().execute();
-                            }
-                        }, 5000);
                     }
                     adapter.setFilter(dataFilter);
+                    return true;
+                }
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    Log.i("onQueryTextSubmit", query);
+
 
                     return true;
                 }
