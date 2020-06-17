@@ -14,8 +14,4 @@ Aplikasi ini adalah aplikasi yang dibuat untuk tugas akhir kuliah saya, semoga k
 
 # screenshot
 
-![image](https://github.com/akbarnash/jalsahitsnain/blob/master/Screenshot_20200618-024010.jpg | width=50)
-![image](https://github.com/akbarnash/jalsahitsnain/blob/master/Screenshot_20200618-024014.jpg)
-![image](https://github.com/akbarnash/jalsahitsnain/blob/master/Screenshot_20200618-024027.jpg)
-![image](https://github.com/akbarnash/jalsahitsnain/blob/master/Screenshot_20200618-024033.jpg)
-
+<img src="https://github.com/akbarnash/jalsahitsnain/blob/master/Screenshot_20200618-024010.jpg" width="100" height="100">
